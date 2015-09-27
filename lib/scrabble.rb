@@ -1,6 +1,13 @@
 class Scrabble
+
   def score(word)
-    0
+    word.to_s.upcase.chars.select{|letter| find_score(letter)}.reduce(0) do |sum, letter|
+      sum + find_score(letter)
+    end
+  end
+
+  def find_score(letter)
+    point_values[letter]
   end
 
   def point_values
