@@ -1,9 +1,18 @@
 class Scrabble
 
   def score(word)
-    word.to_s.upcase.chars.select{|letter| find_score(letter)}.reduce(0) do |sum, letter|
+    format_word(word).reduce(0) do |sum, letter|
       sum + find_score(letter)
     end
+  end
+
+  def format_word(word)
+    letters = word.to_s.upcase.chars
+    authenticate_characters(letters)
+  end
+
+  def authenticate_characters(letters)
+    letters.select{|letter| find_score(letter)}
   end
 
   def find_score(letter)
